@@ -3,8 +3,7 @@
 require 'vendor/autoload.php';
 
 use Psr\Log\LogLevel;
-use Anohov\Log\AnohovLogger as Logger;
-use Anohov\Log\AnohovLoggerTarget as LoggerTarget;
+use Anohov\Log\AnohovLoggerFactory as LoggerFactory;
 
 $message = 'I have {cats} cats and {dogs} dogs';
 
@@ -14,13 +13,11 @@ $context = array(
 );
 
 $setting1 = array(
-    'LOG_TARGET' => LoggerTarget::FILE,
     'LOG_PATH' => __DIR__,
     'LOG_FILENAME' => 'file.log',
 );
 
 $setting2 = array(
-    'LOG_TARGET' => LoggerTarget::DATABASE,
     'LOG_HOST' => 'localhost',
     'LOG_USERNAME' => 'root',
     'LOG_USERPASSWORD' => 'qwerty123',
@@ -28,17 +25,19 @@ $setting2 = array(
     'LOG_TABLENAME' => 'logs',
 );
 
-$setting3 = array(
-    'LOG_TARGET' => LoggerTarget::STDOUT,
-);
+$setting3 = array();
 
-$logger = Logger::getLogger();
+$logger = LoggerFactory::getFileLogger();
 
 $logger->setLogSetting($setting1);
 $logger->alert($message, $context);
 
+$logger = LoggerFactory::getDatabaseLogger();
+
 $logger->setLogSetting($setting2);
 $logger->log(LogLevel::NOTICE, $message, $context);
+
+$logger = LoggerFactory::getSTDOutLogger();
 
 $logger->setLogSetting($setting3);
 $logger->log(LogLevel::ERROR, $message, $context);
