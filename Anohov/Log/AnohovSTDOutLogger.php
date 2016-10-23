@@ -4,9 +4,9 @@ namespace Anohov\Log;
 
 use Psr\Log\LogLevel;
 
-class AnohovSTDOutLogger extends AnohovIntroduceLogger
+class AnohovSTDOutLogger extends AnohovIntermediateLogger
 {
-    public static $logger;
+    private static $logger;
     private $fp;
 
     private function __construct()

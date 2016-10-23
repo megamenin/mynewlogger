@@ -5,7 +5,7 @@ namespace Anohov\Log;
 use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface;
 
-abstract class AnohovIntroduceLogger extends AbstractLogger implements LoggerInterface
+abstract class AnohovIntermediateLogger extends AbstractLogger implements LoggerInterface
 {
     protected function getDate()
     {
@@ -57,8 +57,6 @@ abstract class AnohovIntroduceLogger extends AbstractLogger implements LoggerInt
 
         return null;
     }
-
-    abstract public function log($level, $message, array $context = array());
 
     abstract public function setLogSetting(array $setting);
 }

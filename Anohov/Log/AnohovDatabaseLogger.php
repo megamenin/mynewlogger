@@ -4,7 +4,7 @@ namespace Anohov\Log;
 
 use Psr\Log\LogLevel;
 
-class AnohovDatabaseLogger extends AnohovIntroduceLogger
+class AnohovDatabaseLogger extends AnohovIntermediateLogger
 {
     private static $LOG_TARGET;
     private static $LOG_DBNAME;
@@ -13,7 +13,7 @@ class AnohovDatabaseLogger extends AnohovIntroduceLogger
     private static $LOG_USERPASSWORD;
     private static $LOG_HOST;
 
-    public static $logger;
+    private static $logger;
     private $connect;
 
     private function __construct()

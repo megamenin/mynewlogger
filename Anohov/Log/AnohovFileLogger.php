@@ -4,12 +4,12 @@ namespace Anohov\Log;
 
 use Psr\Log\LogLevel;
 
-class AnohovFileLogger extends AnohovIntroduceLogger
+class AnohovFileLogger extends AnohovIntermediateLogger
 {
     private static $LOG_FILENAME;
     private static $LOG_PATH;
 
-    public static $logger;
+    private static $logger;
     private $fp;
 
     private function __construct()
@@ -61,7 +61,7 @@ class AnohovFileLogger extends AnohovIntroduceLogger
         if (is_writable($path)) {
             $this->fp = fopen($path, 'a');
         } else {
-            throw new \Exception('file '.$path.' does not exist or does not writable');
+            throw new \Exception('file '.$path.' is not writable');
         }
     }
 
